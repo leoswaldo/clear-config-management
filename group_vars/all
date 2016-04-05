@@ -25,3 +25,7 @@ metadata_proxy_shared_secret: secret
 heat_domain_admin_password: secret
 heat_user_password: secret
 heat_database_password: secret
+
+cinder_database_password: secret
+cinder_user_password: secret
+cinder_public_interface_name: enp0s8
