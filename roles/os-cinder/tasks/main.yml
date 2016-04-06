@@ -22,4 +22,4 @@
   - include: cinder_configure_common.yml
 
   - include: cinder_controller.yml
-    when: inventroy_hostname in groups['openstack_block_storage_controller']
+    when: inventory_hostname in groups['openstack_block_storage_controller']
