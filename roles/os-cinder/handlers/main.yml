@@ -23,6 +23,6 @@
   - name: restart cinder storage
     service: name={{ item }} enabled=yes state=restarted
     with_items:
-      - tgt
+      - tgtd
       - cinder-volume
     when: inventory_hostname in groups['openstack_block_storage_controller']
