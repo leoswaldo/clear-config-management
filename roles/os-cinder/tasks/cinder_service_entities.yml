@@ -15,21 +15,25 @@
 
   - name: Create cinder service
     keystone:
+      login_user: admin
+      login_password: "{{ keystone_admin_password }}"
+      login_project_name: "admin"
       command: "ensure_service"
       service_name: "cinder"
       service_type: "volume"
       description: "OpenStack Block Storage"
       endpoint: "http://{{ groups['openstack_identity'][0] }}:35357/v3"
-      token: "{{ keystone_admin_token }}"
 
   - name: Create cinderv2 service
     keystone:
+      login_user: admin
+      login_password: "{{ keystone_admin_password }}"
+      login_project_name: "admin"
       command: "ensure_service"
       service_name: "cinderv2"
       service_type: "volumev2"
       description: "OpenStack Block Storage"
       endpoint: "http://{{ groups['openstack_identity'][0] }}:35357/v3"
-      token: "{{ keystone_admin_token }}"
 
   - name: Create heat endpoints
     delegate_to: "{{ groups['openstack_identity'][0] }}"

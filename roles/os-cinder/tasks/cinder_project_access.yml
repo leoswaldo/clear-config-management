@@ -15,6 +15,9 @@
 
   - name: Create users
     keystone:
+      login_user: admin
+      login_password: "{{ keystone_admin_password }}"
+      login_project_name: "admin"
       command: "ensure_user"
       user_name: "{{item.name}}"
       project_name: "{{item.project}}"
@@ -22,18 +25,19 @@
       domain_name: "Default"
       email: "{{item.name}}@example.com"
       endpoint: "http://{{ groups['openstack_identity'][0] }}:35357/v3"
-      token: "{{ keystone_admin_token }}"
     with_items:
       - { name: "cinder", project: "service" }
 
   - name: Add users to roles
     keystone:
+      login_user: admin
+      login_password: "{{ keystone_admin_password }}"
+      login_project_name: "admin"
       command: "ensure_user_role"
       user_name: "{{item.user}}"
       project_name: "{{item.project}}"
       role_name: "{{item.role}}"
       endpoint: "http://{{ groups['openstack_identity'][0] }}:35357/v3"
-      token: "{{ keystone_admin_token }}"
     with_items:
       - { user: "cinder", project: "service", role: "admin"}
 
