@@ -2,9 +2,9 @@
 rpc_backend = rabbit
 auth_strategy = keystone
 my_ip = {{ hostvars[inventory_hostname]['ansible_' + cinder_public_interface_name ]['ipv4']['address'] }}
-{% if inventory_hostname in groups['openstack_block_storage'] %}
+{% if inventory_hostname in groups['openstack_block_storage'][0] %}
 enabled_backends = lvm
-glance_api_servers = http://{{ groups['openstack_networking'] }}:9292
+glance_api_servers = http://{{ groups['openstack_networking'][0] }}:9292
 {% endif %}
 
 [oslo_messaging_rabbit]
@@ -13,11 +13,11 @@ rabbit_userid = {{ rabbitmq_username }}
 rabbit_password = {{ rabbitmq_password }}
 
 [database]
-connection = mysql+pymysql://cinder:{{ cinder_database_password }}@{{ groups['dbservers'] }}/cinder
+connection = mysql+pymysql://cinder:{{ cinder_database_password }}@{{ groups['dbservers'][0] }}/cinder
 
 [keystone_authtoken]
-auth_uri = http://{{ groups['openstack_identity'] }}:5000
-auth_url = http://{{ groups['openstack_identity'] }}:35357
+auth_uri = "http://{{ groups['openstack_identity'][0] }}:5000"
+auth_url = "http://{{ groups['openstack_identity'][0] }}:35357"
 #memcached_servers = controller:11211
 auth_type = password
 project_domain_name = default
