@@ -66,3 +66,8 @@ metadata_proxy_shared_secret = "{{ metadata_proxy_shared_secret }}"
 [libvirt]
 virt_type = {{ nova_virt_type }}
 {% endif %}
+
+{% if groups['openstack_block_storage_controller']|length > 0 %}
+[cinder]
+os_region_name = RegionOne
+{% endif %}
