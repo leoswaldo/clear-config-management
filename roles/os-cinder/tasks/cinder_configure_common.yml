@@ -14,7 +14,7 @@
 # limitations under the License.
 
   - name: Create /etc/cinder
-    file: path=/etc/cinder state=directory mode=770
+    file: path=/etc/cinder state=directory group=cinder mode=770
 
   - name: Configure Cinder /etc/cinder/cinder.conf
     template: dest=/etc/cinder/cinder.conf
