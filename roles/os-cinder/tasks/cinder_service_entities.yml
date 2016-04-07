@@ -35,7 +35,7 @@
       description: "OpenStack Block Storage"
       endpoint: "http://{{ groups['openstack_identity'][0] }}:35357/v3"
 
-  - name: Create heat endpoints
+  - name: Create cinder endpoints
     delegate_to: "{{ groups['openstack_identity'][0] }}"
     keystone:
       login_user: admin
