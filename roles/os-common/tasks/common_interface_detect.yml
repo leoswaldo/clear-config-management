@@ -28,4 +28,4 @@
     set_fact:
       cinder_public_interface_name: "{{ ansible_default_ipv4.alias }}"
     when: cinder_public_interface_name is not defined and 
-          inventroy_hostname in groups['openstack_block_storage_controller']
+          inventory_hostname in groups['openstack_block_storage_controller']

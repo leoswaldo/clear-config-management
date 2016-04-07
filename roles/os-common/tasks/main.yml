@@ -16,6 +16,9 @@
   - include: common_interface_detect.yml
     when: ( inventory_hostname in groups['openstack_compute_controller'] or
             inventory_hostname in groups['openstack_compute'] or
-            inventory_hostname in groups['openstack_networking'] ) and
+            inventory_hostname in groups['openstack_networking'] or
+            inventory_hostname in groups['openstack_block_storage_controller'] or
+            inventory_hostname in groups['openstack_block_sotrage']) and
           ( nova_public_interface_name is not defined or
-            neutron_public_interface_name is not defined )
+            neutron_public_interface_name is not defined or
+            cinder_public_interface_name is not defined)
