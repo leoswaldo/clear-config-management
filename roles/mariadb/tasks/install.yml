@@ -13,12 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Install mariadb bundle
-  command: "swupd bundle-add database-mariadb-dev {{ swupd_args }}"
-  args:
-    creates: /usr/share/clear/bundles/database-mariadb-dev
+- name: Install mariadb
+  apt: name=mariadb-server state=present
 
-- name: Run swupd verify
-  command: "swupd verify -f {{ swupd_args }}"
-  args:
-    creates: /usr/bin/mysqld
+- name: Install python-pymysql
+  apt: name=python-pymysql state=present
