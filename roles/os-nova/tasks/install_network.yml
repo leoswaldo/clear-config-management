@@ -13,12 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Install network bundle
-  command: "swupd bundle-add openstack-network {{ swupd_args }}"
-  args:
-    creates: /usr/share/clear/bundles/openstack-network
-
-- name: Run swupd verify
-  command: "swupd verify -f {{ swupd_args }}"
-  args:
-    creates: /usr/bin/neutron-server
+- name: Install network packages
+  apt: name=neutron-linuxbridge-agent state=present
