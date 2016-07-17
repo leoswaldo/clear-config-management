@@ -13,8 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Optional arguments for swupd
-swupd_args: ""
-
 # RabbitMQ role vars
 rabbitmq_username: openstack
