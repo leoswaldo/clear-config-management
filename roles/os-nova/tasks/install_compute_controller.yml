@@ -13,12 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Install nova compute controller bundle
-  command: "swupd bundle-add openstack-compute-controller {{ swupd_args }}"
-  args:
-    creates: /usr/share/clear/bundles/openstack-compute-controller
-
-- name: Run swupd verify
-  command: "swupd verify -f {{ swupd_args }}"
-  args:
-    creates: /usr/lib/systemd/system/nova-conductor.service
+- name: Install nova compute controller packages
+  apt: name={{ item }} state=present
+  with_items:
+    - nova-api
+    - nova-conductor
+    - nova-consoleauth
+    - nova-novncproxy
+    - nova-schedule
