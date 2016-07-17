@@ -3,6 +3,8 @@
 
 swupd_args: "-F staging -u http://clearlinux-sandbox.jf.intel.com/update/"
 
+admin_token: supersecret
+
 database_root_password: secret
 rabbitmq_password: secret
 

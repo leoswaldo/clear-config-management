@@ -1,5 +1,6 @@
 [DEFAULT]
 rpc_backend = rabbit
+admin_token = {{ admin_token }}
 
 {% if log_debug %}
 debug = True
@@ -7,6 +8,9 @@ debug = True
 
 [database]
 connection = mysql+pymysql://keystone:{{ keystone_database_password }}@{{ groups['dbservers'][0] }}/keystone
+
+[token]
+provider = fernet
 
 [cache]
 enabled = True

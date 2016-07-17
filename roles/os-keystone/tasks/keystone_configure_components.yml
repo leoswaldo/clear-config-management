@@ -16,6 +16,13 @@
   - name: Create /etc/keystone directory
     file: path=/etc/keystone state=directory group=keystone mode=770
 
+  - name: Create apache configuration
+    copy: src=wsgi-keystone.conf 
+          dest=/etc/apache2/sites-available/wsgi-keystone.conf mode=0644
+
+  - name: Enable wsgi keystone
+    command: "ln -s /etc/apache2/sites-available/wsgi-keystone.conf /etc/apache2/sites-enabled"
+
   - name: Create /etc/keystone/keystone.conf
     template: dest=/etc/keystone/keystone.conf
               src=keystone.conf.j2 group=keystone mode=640
@@ -25,9 +32,6 @@
   - name: Ensure keystone is running
     service: name={{ item }} enabled=yes state=started
     with_items:
-      - memcached
-      - nginx
-      - uwsgi@keystone-admin.socket
-      - uwsgi@keystone-public.socket
+      - apache2
 
   - meta: flush_handlers

@@ -13,22 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Install keystone bundle
-  command: "swupd bundle-add openstack-identity {{ swupd_args }}"
-  args:
-    creates: /usr/share/clear/bundles/openstack-identity
+- name: Disable the keystone service from starting automatically after installation
+  command: "echo 'manual' > /etc/init/keystone.override"
 
-- name: Install python clients bundle
-  command: "swupd bundle-add openstack-python-clients {{ swupd_args }}"
-  args:
-    creates: /usr/share/clear/bundles/openstack-python-clients
-
-- name: Run swupd verify
-  command: "swupd verify -f {{ swupd_args }}"
-  args:
-    creates: /usr/bin/keystone-manage
-
-- name: Run swupd verify
-  command: "swupd verify -f {{ swupd_args }}"
-  args:
-    creates: /usr/bin/openstack
+- name: Install keystone and dependencies
+  apt: name={{ item }} state=present
+  with_items:
+    - keystone
+    - apache2
+    - libapache2-mod-wsgi
+    - python-pymysql
+    - python-openstackclient
