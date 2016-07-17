@@ -31,7 +31,6 @@
   - name: Ensure glance is running
     service: name={{ item }} enabled=yes state=started
     with_items:
-      - memcached.service
       - glance-registry.service
       - glance-api.service
 

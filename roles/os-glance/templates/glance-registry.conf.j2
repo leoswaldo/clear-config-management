@@ -21,3 +21,6 @@ password = {{ glance_user_password }}
 rabbit_host = {{ groups['messaging_servers'][0] }}
 rabbit_userid = {{ rabbitmq_username }}
 rabbit_password = {{ rabbitmq_password }}
+
+[paste_deploy]
+flavor = keystone

@@ -14,11 +14,4 @@
 # limitations under the License.
 
 - name: Install glance bundle
-  command: "swupd bundle-add openstack-image {{ swupd_args }}"
-  args:
-    creates: /usr/share/clear/bundles/openstack-image
-
-- name: Run swupd verify
-  command: "swupd verify -f {{ swupd_args }}"
-  args:
-    creates: /usr/bin/glance-api
+  apt: name=glance state=present
