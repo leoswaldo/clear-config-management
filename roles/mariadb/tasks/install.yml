@@ -15,6 +15,7 @@
 
 - name: Install mariadb
   apt: name=mariadb-server state=present
-
-- name: Install python-pymysql
-  apt: name=python-pymysql state=present
+  with_items:
+    - python-software-properties
+    - mariadb-server
+    - python-mysqldb
