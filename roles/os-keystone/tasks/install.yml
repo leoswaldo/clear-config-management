@@ -22,5 +22,8 @@
     - keystone
     - apache2
     - libapache2-mod-wsgi
-    - python-pymysql
+    - python-mysqldb
     - python-openstackclient
+
+- name: Install PyMySQL
+  pip: name=PyMySQL
