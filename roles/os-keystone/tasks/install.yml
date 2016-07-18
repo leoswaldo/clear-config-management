@@ -17,7 +17,7 @@
   command: "echo 'manual' > /etc/init/keystone.override"
 
 - name: Install keystone and dependencies
-  apt: name={{ item }} state=present
+  apt: name={{ item }} state=latest
   with_items:
     - keystone
     - apache2
