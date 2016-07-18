@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+  - name: Ensure mitaka releases are installed
+    command: "add-apt-repository cloud-archive:mitaka"
+
+
   - include: common_interface_detect.yml
     when: ( inventory_hostname in groups['openstack_compute_controller'] or
             inventory_hostname in groups['openstack_compute'] or
