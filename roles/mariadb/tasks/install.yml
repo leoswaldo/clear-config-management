@@ -13,9 +13,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Instal Python Dependencies
+  apt: name={{ item }} state=latest
+  with_items:
+    - python-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - zlib1g-dev
+    - python-software-properties
+    - python-mysqldb
+
+- name: Install PyMySQL
+  pip: name={{ item }}
+  with_items:
+    - PyMySQL
+    - MySQL-python
+
 - name: Install mariadb
   apt: name=mariadb-server state=present
   with_items:
-    - python-software-properties
     - mariadb-server
-    - python-mysqldb
