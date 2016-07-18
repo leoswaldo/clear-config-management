@@ -17,6 +17,12 @@
   - include: keystone_db_setup.yml
   - include: keystone_configure_components.yml
   - include: keystone_db_sync.yml
+
+  - name: Perform a Fernet setup 
+    command: "keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone"
+    become: yes
+    become_user: keystone
+
   - include: keystone_bootstrap.yml
   - include: keystone_service_entities.yml
   - include: keystone_project_access.yml
