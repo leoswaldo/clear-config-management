@@ -16,7 +16,7 @@
   - include: install.yml
 
   - name: Start mariadb server
-    service: name=mariadb enabled=yes state=started
+    service: name=mysql enabled=yes state=started
 
   - name: Set root user password
     mysql_user: name=root
