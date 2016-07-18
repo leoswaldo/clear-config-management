@@ -16,6 +16,4 @@
   - name: restart keystone
     service: name={{ item }} enabled=yes state=restarted
     with_items:
-      - uwsgi@keystone-admin.service
-      - uwsgi@keystone-public.service
-      - memcached
+      - apache2
