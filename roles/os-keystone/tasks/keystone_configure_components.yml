@@ -21,7 +21,8 @@
           dest=/etc/apache2/sites-available/wsgi-keystone.conf mode=0644
 
   - name: Enable wsgi keystone
-    command: "ln -s /etc/apache2/sites-available/wsgi-keystone.conf /etc/apache2/sites-enabled"
+    file: src=/etc/apache2/sites-available/wsgi-keystone.conf
+          dest=/etc/apache2/sites-enabled/wsgi-keystone.conf state=link
 
   - name: Create /etc/keystone/keystone.conf
     template: dest=/etc/keystone/keystone.conf
